@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futya Vibes
+street photography</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER  -->
+  <header class="header">
+    <div class="logo">Личный блог</div>
+
+    <nav class="navigation" id="menu">
+      <a class="navigation-link" href="#about">Обо мне</a>
+      <a class="navigation-link" href="#posts">Записи</a>
+      <a class="navigation-link" href="#contacts">Контакты</a>
+    </nav>
+
+    <div class="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">Тема</button>
+  </header>
+
+  <!-- CAROUSEL  -->
+  <div class="carousel">
+    <button class="carousel-btn left" id="prev">‹</button>
+
+    <div class="carousel-track" id="carouselTrack">
+      <!-- слайды создаются через JS -->
+    </div>
+
+    <button class="carousel-btn right" id="next">›</button>
+  </div>
+
+  <!-- MAIN  -->
+  <main class="main">
+
+    <section class="posts" id="posts">
+<h1 class="visually-hidden">Записи блога</h1>
+      <article class="post">
+        <h2 class="post-title"> Почему именно улица? </h2>
+        <p class="post-text">
+     
+Улица — это живое пространство без сценария.
+Здесь всё настоящее: люди, движение, свет и настроение.
+Мне важно передавать атмосферу, а не идеальную картинку.
+
+        </p>
+      </article>
+
+      <article class="post">
+        <h2 class="post-title">  Первые шаги в уличной фотографии</h2>
+        <p class="post-text">
+         Первые шаги в уличной фотографии
+Уличная фотография для меня — это наблюдение и терпение.
+Я учусь замечать детали, эмоции и сцены, которые существуют всего несколько секунд.
+Этот проект — начало моего пути и способ сохранить эти моменты.
+        </p>
+      </article>
+    </section>
+
+    <aside class="about" id="about">
+      <h3 class="about-title">Обо мне</h3>
+      <p class="about-text">
+Привет, меня зовут Ксюша.
+Я начинающий уличный фотограф, который ищет красоту в повседневных моментах города.
+
+Меня вдохновляют улицы, люди, свет, тени и случайные сцены, которые невозможно повторить.
+Этот блог — мой визуальный дневник и пространство для экспериментов с уличной фотографией.
+      </p>
+    </aside>
+
+  </main>
+
+  <!-- FOOTER  -->
+  <footer class="footer" id="contacts">
+    <div class="socials">
+      <a href="https://www.instagram.com/futya.vibes" target="_blank">
+        <img src="images/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@futya.vibes" target="_blank">
+        <img src="images/tiktok.png" alt="TikTok">
+      </a>
+    </div>
+    <a class="footer-link" href="https://maps.google.com" target="_blank">Минск</a>
+  </footer>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <button class="modal-btn left" id="modalPrev">‹</button>
+<img
+  id="modalImg"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  alt="Увеличенное изображение фотографии"
+>
+
+
+
+  <button class="modal-btn right" id="modalNext">›</button>
+</div>
+<script>
+/* ===== ИСХОДНЫЕ ФУНКЦИИ ===== */
+function toggleTheme() {
+  document.body.classList.toggle("theme-dark");
+}
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("navigation-active");
+}
+
+/* ===== ДАННЫЕ ===== */
+const images = Array.from({ length: 22 }, (_, i) => `images/photo${i + 1}.jpg`);
+
+
+/* ===== ПРОСТАЯ БЕСКОНЕЧНАЯ КАРУСЕЛЬ ===== */
+const track = document.getElementById("carouselTrack");
+
+
+let position = 0;
+
+/* создаём слайды */
+images.forEach((src, i) => {
+  const slide = document.createElement("div");
+  slide.className = "carousel-slide";
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.addEventListener("click", () => openModal(i));
+
+  const caption = document.createElement("div");
+  caption.className = "slide-caption";
+  caption.textContent = "Street mood";
+
+  slide.appendChild(img);
+  slide.appendChild(caption);
+  track.appendChild(slide);
+});
+
+/* движение */
+function move(dir) {
+  position += dir;
+
+  if (position < 0) position = images.length - 1;
+  if (position >= images.length) position = 0;
+
+  track.style.transition = "transform 0.4s ease";
+  track.style.transform = `translateX(-${position * 100}%)`;
+}
+
+document.getElementById("next").onclick = () => move(1);
+document.getElementById("prev").onclick = () => move(-1);
+/* ===== АВТОПРОКРУТКА ===== */
+let autoSlide = setInterval(() => {
+  move(1);
+}, 3000);
+
+
+
+/* ===== MODAL ГАЛЕРЕЯ  ===== */
+/* ===== ПОЛНОРАЗМЕРНАЯ ГАЛЕРЕЯ ===== */
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalNext = document.getElementById("modalNext");
+const modalPrev = document.getElementById("modalPrev");
+
+let modalIndex = 0;
+
+/* открыть фото */
+function openModal(index) {
+  modalIndex = (index + images.length) % images.length;
+  modal.style.display = "flex";
+  modalImg.src = images[modalIndex];
+}
+
+/* закрыть */
+function closeModal() {
+  modal.style.display = "none";
+}
+
+/* листание */
+modalNext.addEventListener("click", (e) => {
+  e.stopPropagation();
+  modalIndex = (modalIndex + 1) % images.length;
+  modalImg.src = images[modalIndex];
+});
+
+modalPrev.addEventListener("click", (e) => {
+  e.stopPropagation();
+  modalIndex = (modalIndex - 1 + images.length) % images.length;
+  modalImg.src = images[modalIndex];
+});
+
+/* клик вне фото — закрыть */
+modal.addEventListener("click", closeModal);
+
+</script>
