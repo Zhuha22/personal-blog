@@ -28,6 +28,10 @@ body {
   color: var(--text-color);
   line-height: 1.6;
 }
+body {
+  padding-top: 80px;
+}
+
 
 /* === общие элементы === */
 a {
@@ -48,9 +52,11 @@ a:hover {
 
 /* === header === */
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 2000;
+  left: 0;
+  width: 100%;
+  z-index: 5000;
 
   display: flex;
   align-items: center;
@@ -67,11 +73,19 @@ a:hover {
 }
 
 .navigation {
-  position: relative;
-  display: flex;
-  gap: 10px;
-  z-index: 2100;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 6000;
+
+  display: none;
+  flex-direction: column;
+
+  background-color: var(--bg-color);
+  padding: 15px;
+  border: 1px solid var(--accent-color);
 }
+
 
 
 .slider,
@@ -84,7 +98,7 @@ a:hover {
 
 .burger {
   position: relative;
-  z-index: 2200;
+  z-index: 7000;
   display: none;
   flex-direction: column;
   gap: 4px;
@@ -129,8 +143,8 @@ a:hover {
   height: 200px;
   object-fit: cover;
   cursor: pointer;
- transform: scale(1.05);
 }
+
 
 .slide-caption {
   position: absolute;
@@ -301,6 +315,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
