@@ -139,13 +139,11 @@ a:hover {
   cursor: pointer;
 }
 
-
-
-
 .burger span {
   width: 40px;
-  height: 2px;
+  height: 3px;
   background-color: var(--text-color);
+  border-radius: 2px;
 }
 
 .theme-toggle {
@@ -341,6 +339,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
