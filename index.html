@@ -12,18 +12,20 @@ street photography</title>
 <div class="container">
 
   <!-- HEADER  -->
-  <header class="header">
-    <div class="logo">Личный блог</div>
+<header class="header">
+  <div class="logo">Личный блог</div>
 
-    <nav class="navigation" id="menu">
-      <a class="navigation-link" href="#about">Обо мне</a>
-      <a class="navigation-link" href="#posts">Записи</a>
-      <a class="navigation-link" href="#contacts">Контакты</a>
-    </nav>
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-    <div class="burger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+  <nav class="navigation" id="navigation">
+    <a href="#about" class="navigation-link">Обо мне</a>
+    <a href="#posts" class="navigation-link">Посты</a>
+    <a href="#contacts" class="navigation-link">Контакты</a>
+  </nav>
 
     <button class="theme-toggle" onclick="toggleTheme()">Тема</button>
   </header>
@@ -202,3 +204,4 @@ modalPrev.addEventListener("click", (e) => {
 modal.addEventListener("click", closeModal);
 
 </script>
+
