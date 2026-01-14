@@ -91,9 +91,10 @@ a:hover {
 
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease; 
-  text-align: center;
+  pointer-events: none; 
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
+
 
 
 .navigation-link {
@@ -111,7 +112,9 @@ a:hover {
 .navigation-active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto; 
 }
+
 
 
 .navigation-active .navigation-link {
@@ -339,6 +342,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
