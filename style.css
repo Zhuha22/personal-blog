@@ -65,8 +65,24 @@ a:hover {
 }
 
 .navigation-link {
-  position: relative;
+  position: sticky;
 }
+
+.burger {
+  position: relative;
+  z-index: 1100;
+}
+
+.navigation {
+  z-index: 1050;
+}
+.slider,
+.carousel,
+.post img {
+  position: relative;
+  z-index: 1;
+}
+
 
 .burger {
   display: none;
@@ -282,5 +298,6 @@ flex-direction: column;
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
