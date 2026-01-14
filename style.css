@@ -84,17 +84,29 @@ a:hover {
   justify-content: center;
   align-items: center;
 
-  background-color: var(--bg-color);
-  gap: 30px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+
+  gap: 32px;
 
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease;
 }
+.navigation {
+  text-align: center;
+}
+
+
 .navigation-link {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 500;
   letter-spacing: 1px;
+  color: #ffffff;
+  opacity: 0;
+
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 
@@ -102,19 +114,12 @@ a:hover {
   opacity: 1;
   visibility: visible;
 }
-.navigation-link {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
+
 
 .navigation-active .navigation-link {
   opacity: 1;
   transform: translateY(0);
 }
-
-
-
 
 .slider,
 .carousel,
@@ -125,13 +130,12 @@ a:hover {
 
 
 .burger {
-  position: relative;
+  position: fixed;
+  top: 25px;
+  right: 20px;
   z-index: 7000;
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  cursor: pointer;
 }
+
 
 
 .burger span {
@@ -333,9 +337,13 @@ a:hover {
   transition: width 0.3s ease;
 }
 
-.navigation-link:hover::after {
-  width: 100%;
+.navigation-link:hover {
+  opacity: 0.7;
 }
+.no-scroll {
+  overflow: hidden;
+}
+
 .post {
   transition: transform 0.3s ease;
 }
@@ -343,6 +351,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
