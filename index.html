@@ -114,13 +114,19 @@ street photography</title>
 function toggleTheme() {
   document.body.classList.toggle("theme-dark");
 }
-  const burger = document.getElementById("burger");
+const burger = document.getElementById("burger");
 const navigation = document.getElementById("navigation");
 
-burger.addEventListener("click", () => {
+burger.addEventListener("click", (e) => {
+  e.stopPropagation();
   navigation.classList.toggle("navigation-active");
   document.body.classList.toggle("no-scroll");
 });
+navigation.addEventListener("click", () => {
+  navigation.classList.remove("navigation-active");
+  document.body.classList.remove("no-scroll");
+});
+
 
 
 /* ===== ДАННЫЕ ===== */
@@ -214,6 +220,7 @@ modal.addEventListener("click", closeModal);
 
 
 </script>
+
 
 
 
