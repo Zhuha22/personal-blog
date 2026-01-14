@@ -72,19 +72,47 @@ a:hover {
   font-weight: bold;
 }
 
+
+/* === Fullscreen burger menu === */
 .navigation {
   position: fixed;
-  top: 80px;
-  right: 20px;
+  inset: 0;
   z-index: 6000;
 
-  display: none;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   background-color: var(--bg-color);
-  padding: 15px;
-  border: 1px solid var(--accent-color);
+  gap: 30px;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
+.navigation-link {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+
+.navigation-active {
+  opacity: 1;
+  visibility: visible;
+}
+.navigation-link {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.navigation-active .navigation-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 
 
@@ -315,6 +343,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
