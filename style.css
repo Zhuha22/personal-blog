@@ -232,7 +232,12 @@ flex-direction: column;
 @media (max-width: 768px) {
   .navigation {
     position: absolute;
-    ...
+    top: 60px;
+    right: 20px;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    padding: 15px;
+    border: 1px solid var(--accent-color);
     display: none;
   }
 
@@ -243,7 +248,12 @@ flex-direction: column;
   .burger {
     display: flex;
   }
+
+  .main {
+    grid-template-columns: 1fr;
+  }
 }
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -251,3 +261,26 @@ flex-direction: column;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
 }
+.navigation-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--text-color);
+  transition: width 0.3s ease;
+}
+
+.navigation-link:hover::after {
+  width: 100%;
+}
+.post {
+  transition: transform 0.3s ease;
+}
+
+.post:hover {
+  transform: translateY(-4px);
+}
+
+
