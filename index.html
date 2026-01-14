@@ -114,9 +114,14 @@ street photography</title>
 function toggleTheme() {
   document.body.classList.toggle("theme-dark");
 }
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("navigation-active");
-}
+  const burger = document.getElementById("burger");
+const navigation = document.getElementById("navigation");
+
+burger.addEventListener("click", () => {
+  navigation.classList.toggle("navigation-active");
+  document.body.classList.toggle("no-scroll");
+});
+
 
 /* ===== ДАННЫЕ ===== */
 const images = Array.from({ length: 22 }, (_, i) => `images/photo${i + 1}.jpg`);
@@ -134,7 +139,9 @@ images.forEach((src, i) => {
   slide.className = "carousel-slide";
 
   const img = document.createElement("img");
-  img.src = src;
+ img.src = src;
+img.onerror = () => img.remove();
+
   img.addEventListener("click", () => openModal(i));
 
   const caption = document.createElement("div");
@@ -207,6 +214,7 @@ modal.addEventListener("click", closeModal);
 
 
 </script>
+
 
 
 
