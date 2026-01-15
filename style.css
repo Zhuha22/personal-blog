@@ -204,6 +204,12 @@ a:hover {
   padding: 6px 10px;
   cursor: pointer;
 }
+.carousel, .carousel-slide img, .post img {
+  width: 100%;
+  height: auto; /* подстраивается под ширину */
+  object-fit: cover;
+  border-radius: 8px; /* слегка скругляем для аккуратного вида */
+}
 
 .carousel-btn.left { left: 10px; }
 .carousel-btn.right { right: 10px; }
@@ -407,6 +413,7 @@ display: grid;
     color: #ffffff;
   }
 }
+
 
 
 
