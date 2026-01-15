@@ -394,7 +394,7 @@ display: grid;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+ gap: 20px;
     background: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(6px);
 
@@ -415,6 +415,7 @@ display: grid;
     color: #ffffff;
   }
 }
+
 
 
 
