@@ -310,7 +310,6 @@ a:hover {
 
   .navigation {
     position: static;
-
     display: flex;
     flex-direction: row;
     gap: 20px;
@@ -329,13 +328,11 @@ a:hover {
     opacity: 1;
     transform: none;
   }
-}
-
-
 
   .main {
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr 1fr;
   }
+}
 
 
 .visually-hidden {
@@ -375,6 +372,11 @@ a:hover {
 @media (max-width: 768px) {
   .burger {
     display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 7000;
   }
 
   .navigation {
@@ -401,9 +403,11 @@ a:hover {
 
   .navigation-link {
     font-size: 28px;
-    color: #fff;
+    color: #ffffff;
   }
 }
+
+
 
 
 
