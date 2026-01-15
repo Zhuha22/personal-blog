@@ -210,9 +210,10 @@ a:hover {
 
 /* === main === */
 .main {
-  display: grid;
+display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 40px;
+  padding: 40px 0; /* равные отступы сверху/снизу */
 }
 
 .posts {
@@ -326,10 +327,7 @@ a:hover {
 
 
  .main {
-  display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 40px;
-  padding: 40px 0; /* равные отступы сверху/снизу */
 }
 
 }
@@ -409,6 +407,7 @@ a:hover {
     color: #ffffff;
   }
 }
+
 
 
 
