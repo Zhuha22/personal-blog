@@ -56,23 +56,15 @@ a:hover {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--bg-color);
   z-index: 5000;
-}
-
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
 
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
+
+  background-color: var(--bg-color);
+  padding: 20px;
 }
-
-
-
-
 
 .logo {
   font-size: 20px;
