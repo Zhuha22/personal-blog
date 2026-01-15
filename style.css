@@ -47,8 +47,9 @@ a:hover {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px; /* ровные боковые отступы */
 }
+
 
 /* === header === */
 .header {
@@ -404,6 +405,7 @@ a:hover {
     color: #ffffff;
   }
 }
+
 
 
 
