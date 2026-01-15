@@ -1,229 +1,452 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Futya Vibes
-street photography</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="container">
-
-  <!-- HEADER  -->
-<header class="header">
-  <div class="header-inner">
-
-    <div class="logo">Личный блог</div>
-
-    <nav class="navigation" id="navigation">
-      <a href="#about" class="navigation-link">Обо мне</a>
-      <a href="#posts" class="navigation-link">Посты</a>
-      <a href="#contacts" class="navigation-link">Контакты</a>
-    </nav>
-
-    <button class="theme-toggle" onclick="toggleTheme()">Тема</button>
-
-    <div class="burger" id="burger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-  </div>
-</header>
-
-  <!-- CAROUSEL  -->
-  <div class="carousel">
-    <button class="carousel-btn left" id="prev">‹</button>
-
-    <div class="carousel-track" id="carouselTrack">
-      <!-- слайды создаются через JS -->
-    </div>
-
-    <button class="carousel-btn right" id="next">›</button>
-  </div>
-
-  <!-- MAIN  -->
-  <main class="main">
-
-    <section class="posts" id="posts">
-<h1 class="visually-hidden">Записи блога</h1>
-      <article class="post">
-        <h2 class="post-title"> Почему именно улица? </h2>
-        <p class="post-text">
-     
-Улица — это живое пространство без сценария.
-Здесь всё настоящее: люди, движение, свет и настроение.
-Мне важно передавать атмосферу, а не идеальную картинку.
-
-        </p>
-      </article>
-
-      <article class="post">
-        <h2 class="post-title">  Первые шаги в уличной фотографии</h2>
-        <p class="post-text">
-         Первые шаги в уличной фотографии
-Уличная фотография для меня — это наблюдение и терпение.
-Я учусь замечать детали, эмоции и сцены, которые существуют всего несколько секунд.
-Этот проект — начало моего пути и способ сохранить эти моменты.
-        </p>
-      </article>
-    </section>
-
-    <aside class="about" id="about">
-      <h3 class="about-title">Обо мне</h3>
-      <p class="about-text">
-Привет, меня зовут Ксюша.
-Я начинающий уличный фотограф, который ищет красоту в повседневных моментах города.
-
-Меня вдохновляют улицы, люди, свет, тени и случайные сцены, которые невозможно повторить.
-Этот блог — мой визуальный дневник и пространство для экспериментов с уличной фотографией.
-      </p>
-    </aside>
-
-  </main>
-
-  <!-- FOOTER  -->
-  <footer class="footer" id="contacts">
-    <div class="socials">
-      <a href="https://www.instagram.com/futya.vibes" target="_blank">
-        <img src="images/instagram.png" alt="Instagram">
-      </a>
-      <a href="https://www.tiktok.com/@futya.vibes" target="_blank">
-        <img src="images/tiktok.png" alt="TikTok">
-      </a>
-    </div>
-    <a class="footer-link" href="https://maps.google.com" target="_blank">Минск</a>
-  </footer>
-
-</div>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <button class="modal-btn left" id="modalPrev">‹</button>
-<img
-  id="modalImg"
-  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-  alt="Увеличенное изображение фотографии"
->
-
-
-
-  <button class="modal-btn right" id="modalNext">›</button>
-</div>
-<script>
-/* ===== ИСХОДНЫЕ ФУНКЦИИ ===== */
-function toggleTheme() {
-  document.body.classList.toggle("theme-dark");
-}
-const burger = document.getElementById("burger");
-const navigation = document.getElementById("navigation");
-
-burger.addEventListener("click", (e) => {
-  e.stopPropagation();
-  navigation.classList.toggle("navigation-active");
-  document.body.classList.toggle("no-scroll");
-});
-navigation.addEventListener("click", () => {
-  navigation.classList.remove("navigation-active");
-  document.body.classList.remove("no-scroll");
-});
-
-
-
-/* ===== ДАННЫЕ ===== */
-const images = Array.from({ length: 22 }, (_, i) => `images/photo${i + 1}.jpg`);
-
-
-/* ===== ПРОСТАЯ БЕСКОНЕЧНАЯ КАРУСЕЛЬ ===== */
-const track = document.getElementById("carouselTrack");
-
-
-let position = 0;
-
-/* создаём слайды */
-images.forEach((src, i) => {
-  const slide = document.createElement("div");
-  slide.className = "carousel-slide";
-
-  const img = document.createElement("img");
- img.src = src;
-img.onerror = () => img.remove();
-
-  img.addEventListener("click", () => openModal(i));
-
-  const caption = document.createElement("div");
-  caption.className = "slide-caption";
-  caption.textContent = "Street mood";
-
-  slide.appendChild(img);
-  slide.appendChild(caption);
-  track.appendChild(slide);
-});
-
-/* движение */
-function move(dir) {
-  position += dir;
-
-  if (position < 0) position = images.length - 1;
-  if (position >= images.length) position = 0;
-
-  track.style.transition = "transform 0.4s ease";
-  track.style.transform = `translateX(-${position * 100}%)`;
+/* === базовые переменные === */
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #1a1a1a;
+  --accent-color: #6b6b6b;
 }
 
-document.getElementById("next").onclick = () => move(1);
-document.getElementById("prev").onclick = () => move(-1);
-/* ===== АВТОПРОКРУТКА ===== */
-let autoSlide = setInterval(() => {
-  move(1);
-}, 3000);
-
-
-
-/* ===== MODAL ГАЛЕРЕЯ  ===== */
-/* ===== ПОЛНОРАЗМЕРНАЯ ГАЛЕРЕЯ ===== */
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
-const modalNext = document.getElementById("modalNext");
-const modalPrev = document.getElementById("modalPrev");
-
-let modalIndex = 0;
-
-/* открыть фото */
-function openModal(index) {
-  modalIndex = (index + images.length) % images.length;
-  modal.style.display = "flex";
-  modalImg.src = images[modalIndex];
+.theme-dark {
+  --bg-color: #121212;
+  --text-color: #e6e6e6;
+  --accent-color: #9a9a9a;
 }
 
-/* закрыть */
-function closeModal() {
-  modal.style.display = "none";
+/* === сброс === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* листание */
-modalNext.addEventListener("click", (e) => {
-  e.stopPropagation();
-  modalIndex = (modalIndex + 1) % images.length;
-  modalImg.src = images[modalIndex];
-});
+html {
+  scroll-behavior: smooth;
+}
 
-modalPrev.addEventListener("click", (e) => {
-  e.stopPropagation();
-  modalIndex = (modalIndex - 1 + images.length) % images.length;
-  modalImg.src = images[modalIndex];
-});
-
-/* клик вне фото — закрыть */
-modal.addEventListener("click", closeModal);
-
-  ;
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+body {
+  padding-top: 80px;
+}
 
 
-</script>
+/* === общие элементы === */
+a {
+  color: var(--text-color);
+  text-decoration: none;
+ transition: opacity 0.3s ease;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* ровные боковые отступы */
+}
+
+
+/* === header === */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-color);
+  z-index: 5000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1); /* лёгкая тень для отделения */
+}
+
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.header > * {
+  max-width: 1200px;
+  width: 100%;
+}
+
+
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+/* === Fullscreen burger menu === */
+
+
+.navigation-link {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #ffffff;
+  opacity: 0;
+
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+
+.navigation-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; 
+}
+
+
+
+.navigation-active .navigation-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slider,
+.carousel,
+.post img {
+  position: relative;
+  z-index: 1;
+}
+
+
+.burger {
+  position: static;
+  top: 25px;
+  right: 20px;
+  z-index: 7000;
+
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 40px;
+  height: 3px;
+  background-color: var(--text-color);
+  border-radius: 2px;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  position: relative;
+  z-index: 5000;
+  justify-self: end;
+}
+
+/* === carousel  === */
+.carousel {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  height: 200px;
+  margin-bottom: 60px;
+}
+
+
+.carousel-track {
+  display: flex;
+}
+
+.carousel-slide {
+  position: relative;
+  min-width: 100%;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+
+.slide-caption {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-slide:hover .slide-caption {
+  opacity: 1;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.carousel, .carousel-slide img, .post img {
+  width: 110%;
+  height: auto; /* подстраивается под ширину */
+  object-fit: cover;
+  border-radius: 40px; 
+}
+
+.carousel-btn.left { left: 10px; }
+.carousel-btn.right { right: 10px; }
+
+/* === main === */
+.main {
+display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  padding: 40px 0; /* равные отступы сверху/снизу */
+}
+
+.post {
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9; /* фон под текст */
+  border-radius: 12px;              /* скругление углов */
+  padding: 20px;                     /* внутренние отступы */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* лёгкая тень */
+}
+
+.theme-dark .post {
+  background-color: #1e1e1e; /* тёмный графитовый */
+}
+
+
+.post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.post-title {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.post-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+}
+
+.post {
+  margin-bottom: 40px;
+}
+
+.post-title {
+  margin-bottom: 10px;
+}
+
+.about {
+  border-left: 1px solid var(--accent-color);
+  padding-left: 20px;
+}
+
+
+/* === footer === */
+.footer {
+  margin-top: 60px;
+  padding: 20px 0;
+  border-top: 1px solid var(--accent-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+.socials img {
+  width: 30px;
+  height: 25px;
+  opacity: 0.8;
+}
+
+.socials img:hover {
+  opacity: 1;
+}
+
+/* === modal === */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  color: #fff;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.modal-btn.left { left: 20px; }
+.modal-btn.right { right: 20px; }
+
+.slide-caption {
+  pointer-events: none;
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 769px) {
+  .burger {
+    display: none;
+  }
+
+  .navigation {
+    position: static;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    background: none;
+    backdrop-filter: none;
+  }
+
+  .navigation-link {
+    font-size: 16px;
+    color: var(--text-color);
+    opacity: 1;
+    transform: none;
+  }
+
+  .theme-toggle {
+    margin-left: auto;
+  }
+
+
+ .main {
+  grid-template-columns: 2fr 1fr;
+}
+
+}
+
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+.navigation-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--text-color);
+  transition: width 0.3s ease;
+}
+
+.navigation-link:hover {
+  opacity: 0.7;
+}
+.no-scroll {
+  overflow: hidden;
+}
+
+.post {
+  transition: transform 0.3s ease;
+}
+
+.post:hover {
+  transform: translateY(-4px);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+    z-index: 7000;
+  }
+
+  .theme-toggle {
+    margin-left: auto;
+  }
+
+  .navigation {
+    position: fixed;
+    inset: 0;
+    z-index: 6000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ gap: 20px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .navigation-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .navigation-link {
+    font-size: 28px;
+    color: #ffffff;
+  }
+}
+
 
 
 
