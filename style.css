@@ -154,6 +154,8 @@ a:hover {
   border: none;
   color: var(--text-color);
   cursor: pointer;
+  position: relative;
+  z-index: 8000;
 }
 
 /* === carousel  === */
@@ -299,11 +301,15 @@ a:hover {
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
+/* ===== DESKTOP NAV ===== */
+@media (min-width: 769px) {
   .navigation {
     position: static;
     inset: auto;
+
     flex-direction: row;
+    justify-content: flex-end;
+
     background: none;
     backdrop-filter: none;
 
@@ -311,7 +317,7 @@ a:hover {
     visibility: visible;
     pointer-events: auto;
 
-    gap: 16px;
+    gap: 20px;
   }
 
   .navigation-link {
@@ -320,9 +326,12 @@ a:hover {
     opacity: 1;
     transform: none;
   }
+
   .burger {
-    display: flex;
+    display: none;
   }
+}
+
 
   .main {
     grid-template-columns: 1fr;
@@ -362,6 +371,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
