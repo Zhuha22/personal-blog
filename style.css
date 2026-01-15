@@ -134,7 +134,7 @@ a:hover {
   position: fixed;
   top: 25px;
   right: 20px;
-  z-index: 7000;
+  z-index: 3000;
 
   display: none;
   flex-direction: column;
@@ -155,7 +155,7 @@ a:hover {
   color: var(--text-color);
   cursor: pointer;
   position: relative;
-  z-index: 8000;
+  z-index: 4000;
 }
 
 /* === carousel  === */
@@ -302,11 +302,13 @@ a:hover {
 }
 
 /* ===== DESKTOP NAV ===== */
+/* ===== DESKTOP NAV FIX ===== */
 @media (min-width: 769px) {
   .navigation {
     position: static;
     inset: auto;
 
+    display: flex;
     flex-direction: row;
     justify-content: flex-end;
 
@@ -331,6 +333,7 @@ a:hover {
     display: none;
   }
 }
+
 
 
   .main {
@@ -371,6 +374,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
