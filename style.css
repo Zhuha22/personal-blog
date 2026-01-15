@@ -208,7 +208,7 @@ a:hover {
   width: 100%;
   height: auto; /* подстраивается под ширину */
   object-fit: cover;
-  border-radius: 80px; /* слегка скругляем для аккуратного вида */
+  border-radius: 80px; 
 }
 
 .carousel-btn.left { left: 10px; }
@@ -244,12 +244,14 @@ display: grid;
 /* === footer === */
 .footer {
   margin-top: 60px;
-  padding-top: 20px;
+  padding: 20px 0;
   border-top: 1px solid var(--accent-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
+
 
 .socials {
   display: flex;
@@ -413,6 +415,7 @@ display: grid;
     color: #ffffff;
   }
 }
+
 
 
 
