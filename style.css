@@ -301,25 +301,25 @@ a:hover {
   pointer-events: none;
 }
 
-/* ===== DESKTOP NAV ===== */
-/* ===== DESKTOP NAV FIX ===== */
+/* ===== DESKTOP ===== */
 @media (min-width: 769px) {
+  .burger {
+    display: none;
+  }
+
   .navigation {
     position: static;
-    inset: auto;
 
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-
-    background: none;
-    backdrop-filter: none;
+    gap: 20px;
 
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 
-    gap: 20px;
+    background: none;
+    backdrop-filter: none;
   }
 
   .navigation-link {
@@ -327,10 +327,6 @@ a:hover {
     color: var(--text-color);
     opacity: 1;
     transform: none;
-  }
-
-  .burger {
-    display: none;
   }
 }
 
@@ -375,6 +371,39 @@ a:hover {
   transform: translateY(-4px);
 }
 
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .navigation {
+    position: fixed;
+    inset: 0;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .navigation-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .navigation-link {
+    font-size: 28px;
+    color: #fff;
+  }
+}
 
 
 
