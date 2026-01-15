@@ -300,6 +300,26 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  .navigation {
+    position: static;
+    inset: auto;
+    flex-direction: row;
+    background: none;
+    backdrop-filter: none;
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    gap: 16px;
+  }
+
+  .navigation-link {
+    font-size: 16px;
+    color: var(--text-color);
+    opacity: 1;
+    transform: none;
+  }
   .burger {
     display: flex;
   }
@@ -342,6 +362,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
