@@ -134,7 +134,7 @@ a:hover {
   position: fixed;
   top: 25px;
   right: 20px;
-  z-index: 5000;
+  z-index: 6000;
 
   display: none;
   flex-direction: column;
@@ -155,7 +155,7 @@ a:hover {
   color: var(--text-color);
   cursor: pointer;
   position: relative;
-  z-index: 4000;
+  z-index: 5000;
 }
 
 /* === carousel  === */
@@ -335,7 +335,6 @@ a:hover {
   .main {
     grid-template-columns: 1fr;
   }
-}
 
 
 .visually-hidden {
@@ -404,6 +403,7 @@ a:hover {
     color: #fff;
   }
 }
+
 
 
 
