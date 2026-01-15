@@ -60,11 +60,12 @@ a:hover {
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 20px; 
 
   background-color: var(--bg-color);
   padding: 20px;
 }
+
 
 
 .logo {
@@ -131,7 +132,7 @@ a:hover {
 
 
 .burger {
-  position: fixed;
+  position: static;
   top: 25px;
   right: 20px;
   z-index: 6000;
@@ -403,6 +404,7 @@ a:hover {
     color: #fff;
   }
 }
+
 
 
 
