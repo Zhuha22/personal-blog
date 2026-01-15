@@ -134,7 +134,7 @@ a:hover {
   position: fixed;
   top: 25px;
   right: 20px;
-  z-index: 3000;
+  z-index: 5000;
 
   display: none;
   flex-direction: column;
@@ -374,6 +374,7 @@ a:hover {
 .post:hover {
   transform: translateY(-4px);
 }
+
 
 
 
